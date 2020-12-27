@@ -4,6 +4,7 @@ Steganography library.
 
 Provide an image, data to encode and a place to store the result
 
+```rust
     let mut cover =  File::open("image.png")?;
     let mut data = BufReader::new(Cursor::new("Hello world!"));
     let mut encode_output = Vec::new();
@@ -12,6 +13,7 @@ Provide an image, data to encode and a place to store the result
     encoder
         .encode(&mut cover, &mut data, &mut encode_output)
         .expect("no error");
+```
 
 You can optionally compress the data by providing `CompressInput::Gzip`
 
@@ -19,6 +21,7 @@ You can optionally compress the data by providing `CompressInput::Gzip`
 
 ## Decode
 
+```rust
     let mut image =  File::open("encoded-image.png")?;
     let mut decode_output = Vec::new();
     let decoder = Decoder::new();
@@ -26,3 +29,4 @@ You can optionally compress the data by providing `CompressInput::Gzip`
     decode
         .decode(&mut image, &mut decode_output)
         .expect("no error");
+```
